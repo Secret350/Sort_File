@@ -16,7 +16,7 @@ namedic = dict(zip(phonequan,phonein))
 #Ham chon phuong thuc
 
 def method():
-	mthd = input("Choose the method you want: ADD | DELETE | SHOWINFO\n")
+	mthd = input("Choose the method you want: ADD | DELETE | SHOWINFO\n").upper()
 	return mthd
 
 #Ham nhap so dien thoai lien he
@@ -57,8 +57,32 @@ class contact:
 
 #Ham xoa dia chi lien he
 
-def delete(phonenumber):
+def delete(phonenum):
+	RfileN.seek(0)
+	names = RfileN.readlines()
+	RfileE.seek(0)
+	emails = RfileE.readlines()
+	RfileP.seek(0)
+	numbers = RfileP.readlines()
 
+	#strip(): xoa \n
+
+	try:
+		id = [n.strip() for n in numbers].index(phonenum)
+	except ValueError:
+		print("Phone number not found!")
+		return
+
+	del names[id]
+	del numbers[id]
+	del emails[id]
+
+	with open("Contact-Name.txt",'w') as n:
+		n.writelines(names)
+	with open("Contact-Email.txt", "w") as e:
+		e.writelines(emails)
+	with open("Contact-Phone_number.txt", "w") as p:
+		p.writelines(str(n.strip())+"\n" for n in numbers)
 
 #Cac thao tac
 
@@ -85,8 +109,8 @@ cont = contact(nameread[namedic[int(phonenum)]],phonenum,mailread[namedic[int(ph
 mthd = method()
 
 if mthd == "ADD":
-	add()
+	add(phonenum)
 elif mthd == "DELETE":
-	delete()
+	delete(phonenum)
 else:
 	cont.show_info()
