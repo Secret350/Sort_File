@@ -52,6 +52,15 @@ RfileN.seek(0)
 nameread = RfileN.readlines()
 RfileE.seek(0)
 mailread = RfileE.readlines()
+
 key =  str(input("Please enter the phone number!"))
+
+if
+	
+#Chon chuc nang
+
+mthd = method()
+
+
 cont = contact(nameread[namedic[int(key)]],key,mailread[namedic[int(key)]])
 cont.show_info()
