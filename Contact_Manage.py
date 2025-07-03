@@ -57,7 +57,7 @@ class contact:
 
 #Ham xoa dia chi lien he
 
-#def delete(phonenumber):
+def delete(phonenumber):
 
 
 #Cac thao tac
@@ -90,7 +90,3 @@ elif mthd == "DELETE":
 	delete()
 else:
 	cont.show_info()
-
-
-
-
