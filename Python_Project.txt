@@ -1,0 +1,89 @@
+========================================
+ TỔNG HỢP CÁC DỰ ÁN PYTHON THỰC TẾ
+========================================
+
+Dưới đây là danh sách các dự án thực tế với Python, được phân loại theo từng cấp độ kỹ năng. File này được tạo ra để bạn dễ dàng theo dõi và lựa chọn dự án phù hợp.
+
+----------------------------------------
+=== DÀNH CHO NGƯỜI MỚI BẮT ĐẦU ===
+----------------------------------------
+
+Các dự án này tập trung vào các khái niệm Python cơ bản như biến, kiểu dữ liệu, vòng lặp, câu lệnh điều kiện, hàm và làm việc với các thư viện tiêu chuẩn.
+
+**1. Trò chơi Đoán số (Guess the Number)**
+
+* **Mô tả:** Máy tính sẽ chọn một số ngẫu nhiên và người dùng phải đoán ra con số đó. Sau mỗi lần đoán, máy tính sẽ đưa ra gợi ý "lớn hơn" hoặc "nhỏ hơn".
+* **Kiến thức áp dụng:**
+    * Thư viện `random`: Để tạo số ngẫu nhiên.
+    * Vòng lặp `while`: Cho phép người dùng đoán nhiều lần.
+    * Câu lệnh `if/elif/else`: Để so sánh số đoán và đưa ra gợi ý.
+    * Hàm `input()`: Để nhận dữ liệu nhập từ người dùng.
+* **Ý tưởng mở rộng:**
+    * Giới hạn số lần đoán của người chơi.
+    * Cho phép người dùng tùy chỉnh khoảng số (ví dụ: 1-100 hoặc 1-1000).
+    * Lưu điểm cao của người chơi vào một file text.
+
+**2. Ứng dụng Quản lý danh bạ đơn giản**
+
+* **Mô tả:** Một chương trình dòng lệnh cho phép người dùng thực hiện các thao tác: thêm, tìm kiếm, cập nhật và xóa thông tin liên lạc (tên, số điện thoại, email).
+* **Kiến thức áp dụng:**
+    * Cấu trúc dữ liệu `dictionary`: Để lưu trữ thông tin của mỗi liên lạc.
+    * Cấu trúc dữ liệu `list`: Để lưu danh sách các liên lạc.
+    * Làm việc với file (đọc và ghi file `.txt` hoặc `.csv`): Để lưu trữ danh bạ và không bị mất dữ liệu sau khi tắt chương trình.
+    * Hàm: Để tổ chức code thành các chức năng riêng biệt (thêm, xóa, sửa, tìm...).
+* **Ý tưởng mở rộng:**
+    * Thêm chức năng nhập (import) hoặc xuất (export) danh bạ ra file CSV.
+    * Xây dựng giao diện người dùng đơn giản với thư viện `Tkinter`.
+
+**3. Công cụ sắp xếp file tự động**
+
+* **Mô tả:** Viết một script để tự động quét một thư mục (ví dụ: thư mục "Tải về") và di chuyển các file vào các thư mục con tương ứng dựa trên loại file của chúng (ví dụ: file ảnh vào thư mục 'HinhAnh', file PDF vào 'TaiLieu').
+* **Kiến thức áp dụng:**
+    * Thư viện `os`: Để tương tác với hệ thống file (liệt kê file, tạo thư mục).
+    * Thư viện `shutil`: Để thực hiện các thao tác file cấp cao như di chuyển file.
+    * Xử lý chuỗi: Để lấy phần mở rộng của file (ví dụ: `.jpg`, `.pdf`).
+* **Ý tưởng mở rộng:**
+    * Cho phép người dùng định nghĩa các quy tắc sắp xếp riêng trong một file cấu hình.
+    * Ghi lại nhật ký (log) về các hành động đã thực hiện (file nào đã được di chuyển đi đâu).
+
+----------------------------------------
+=== DÀNH CHO TRÌNH ĐỘ TRUNG CẤP ===
+----------------------------------------
+
+Các dự án này yêu cầu kỹ năng làm việc với các thư viện bên thứ ba, hiểu về API và các khái niệm lập trình phức tạp hơn một chút.
+
+**1. Công cụ cào dữ liệu web (Web Scraper)**
+
+* **Mô tả:** Xây dựng một công cụ để tự động trích xuất thông tin từ các trang web. Ví dụ: lấy danh sách sản phẩm và giá từ một trang thương mại điện tử, hoặc lấy tiêu đề tin tức từ một trang báo.
+* **Kiến thức áp dụng:**
+    * Thư viện `Requests`: Để gửi yêu cầu HTTP và tải về nội dung HTML của trang web.
+    * Thư viện `Beautiful Soup` hoặc `lxml`: Để phân tích (parse) cây HTML và trích xuất dữ liệu mong muốn.
+    * Thư viện `Pandas`: Để lưu dữ liệu đã cào vào file CSV hoặc Excel một cách có cấu trúc.
+* **Ví dụ dự án:**
+    * Cào dữ liệu giá và thông số các loại tiền điện tử từ trang CoinMarketCap.
+    * Cào thông tin việc làm Python (vị trí, công ty, địa điểm) từ một trang web tuyển dụng.
+* **Lưu ý:** Luôn kiểm tra file `robots.txt` của trang web và tôn trọng quy định của họ để tránh bị chặn.
+
+**2. Ứng dụng Thời tiết**
+
+* **Mô tả:** Tạo một ứng dụng (dòng lệnh hoặc có giao diện) cho phép người dùng nhập tên một thành phố và nhận lại thông tin thời tiết hiện tại cũng như dự báo cho các ngày tới.
+* **Kiến thức áp dụng:**
+    * Làm việc với API: Đăng ký và sử dụng API từ một nhà cung cấp dịch vụ thời tiết (ví dụ: OpenWeatherMap, WeatherAPI).
+    * Thư viện `Requests`: Để gọi API.
+    * Xử lý dữ liệu JSON: Dữ liệu trả về từ API thường có định dạng JSON.
+    * (Tùy chọn) Giao diện đồ họa: Sử dụng `Tkinter`, `PyQt`, hoặc `Kivy` để tạo giao diện.
+* **Ý tưởng mở rộng:**
+    * Hiển thị các thông tin chi tiết hơn như độ ẩm, tốc độ gió, chỉ số UV.
+    * Tự động phát hiện vị trí của người dùng dựa trên địa chỉ IP.
+    * Lưu lại lịch sử các thành phố đã tra cứu.
+
+**3. Blog cá nhân với Django hoặc Flask**
+
+* **Mô tả:** Phát triển một trang web blog hoàn chỉnh, nơi bạn hoặc người dùng khác có thể tạo, đọc, cập nhật và xóa các bài viết.
+* **Kiến thức áp dụng:**
+    * Web Framework: Sử dụng `Django` (framework mạnh mẽ, "pin-included") hoặc `Flask` (framework gọn nhẹ, linh hoạt).
+    * ORM (Object-Relational Mapping): Để tương tác với cơ sở dữ liệu (SQLite, PostgreSQL) bằng code Python thay vì viết SQL chay.
+    * HTML/CSS: Để xây dựng giao diện người dùng cho trang web.
+    * Routing, Templates, Forms: Các khái niệm cốt lõi trong phát triển web.
+* **Ý tưởng mở rộng:**
+    * Xây dựng hệ thống đăng ký/đăng nhập cho
