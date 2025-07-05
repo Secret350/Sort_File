@@ -70,7 +70,6 @@ def delete(phonenum):
 
 	#strip(): xoa \n
 
-
 	try:
 		id = [n.strip() for n in numbers].index(phonenum)
 	except ValueError:
