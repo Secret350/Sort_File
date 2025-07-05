@@ -40,8 +40,9 @@ def method():
 #Ham hien thi toan bo so dien thoai lien he
 
 def show_all():
+	refresh_data()
 	for p in range (0,len(phonequan)):
-		print("0" + str(phonequan[p]) + ": " + str(namequan[p]).strip())
+		print("0" + str(phonequan[p]) + " : " + str(namequan[p]).strip())
 	main()
 #Ham nhap so dien thoai lien he
 
@@ -106,9 +107,11 @@ def delete(nm):
 	del emails[id]
 
 	with open("Contact-Name.txt",'w') as n:
-		n.writelines(names)
+		n.write(str(names[0].strip()))
+		n.writelines("\n" + names[i].strip() for i in range (1,len(names)))
 	with open("Contact-Email.txt", "w") as e:
-		e.writelines(emails)
+		e.write(str(emails[0].strip()))
+		e.writelines("\n" + emails[i].strip() for i in range (1,len(emails)))
 	with open("Contact-Phone_number.txt", "w") as p:
 		p.write(str(numbers[0].strip()))
 		p.writelines("\n" + str(numbers[n].strip()) for n in range(1,len(numbers)))
