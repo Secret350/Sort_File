@@ -16,13 +16,14 @@ namedic = dict(zip(phonequan,phonein))
 #Ham chon phuong thuc
 
 def method():
-	mthd = input("Choose the method you want: ADD | DELETE | SHOW | SHOWALL | OUT\n").upper()
+	mthd = input("Choose the method you want: DELETE | SHOW | SHOWALL | OUT\n").upper()
 	return mthd
 
 #Ham hien thi toan bo so dien thoai lien he
 
-def show_all(phonequan):
-	print(p for p in phonequan)
+def show_all():
+	for p in range (0,len(phonequan)):
+		print("0" + str(phonequan[p]) + ": " + str(namequan[p]).strip())
 
 #Ham nhap so dien thoai lien he
 
@@ -111,16 +112,14 @@ cont = contact(nameread[namedic[int(phonenum)]],phonenum,mailread[namedic[int(ph
 
 mthd = method()
 
-if mthd == "ADD":
-	add(phonenum)
-elif mthd == "DELETE":
+if mthd == "DELETE":
 	delete(phonenum)
 elif mthd == "SHOW":
 	cont.show_info()
 elif mthd == "OUT":
 	sys.exit()
 elif mthd == "SHOWALL":
-	show_all(phonequan)
+	show_all()
 else:
 	print("Please try again!")
-	method()
+	mthd = method()
