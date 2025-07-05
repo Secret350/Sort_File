@@ -16,13 +16,18 @@ namedic = dict(zip(phonequan,phonein))
 #Ham chon phuong thuc
 
 def method():
-	mthd = input("Choose the method you want: ADD | DELETE | SHOW | OUT\n").upper()
+	mthd = input("Choose the method you want: ADD | DELETE | SHOW | SHOWALL | OUT\n").upper()
 	return mthd
+
+#Ham hien thi toan bo so dien thoai lien he
+
+def show_all(phonequan):
+	print(p for p in phonequan)
 
 #Ham nhap so dien thoai lien he
 
 def num():
-	key = str(input("Please enter the phone number!"))
+	key = str(input("Please enter the phone number!\n"))
 	return key
 
 #Ham them dia chi vao danh ba
@@ -42,8 +47,6 @@ def add(phonenum):
 		RfileE.write("\n" + str(newcontact_email))
 		RfileN.write("\n" + str(newcontact_name))
 
-
-
 class contact:
 	def __init__(self,name,phonenumber,email):
 		self.name = name
@@ -54,7 +57,6 @@ class contact:
 
 	def show_info(self):
 		print(f"The contact's infomation:\nName: {self.name}Phone_Number: {self.phonenumber}\nEmail: {self.email}")
-
 #Ham xoa dia chi lien he
 
 def delete(phonenum):
@@ -90,7 +92,7 @@ def delete(phonenum):
 phonenum = num()
 
 if int(phonenum) not in phonequan:
-	print("This is newphone number do you want to add new?")
+	print("This is newphone number do you want to add new?\n")
 	ans = input("Yes/EnterAgain/End").upper()
 	if ans == "YES":
 		add(phonenum)
@@ -117,6 +119,8 @@ elif mthd == "SHOW":
 	cont.show_info()
 elif mthd == "OUT":
 	sys.exit()
+elif mthd == "SHOWALL":
+	show_all(phonequan)
 else:
 	print("Please try again!")
 	method()
