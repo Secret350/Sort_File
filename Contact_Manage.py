@@ -16,7 +16,7 @@ namedic = dict(zip(phonequan,phonein))
 #Ham chon phuong thuc
 
 def method():
-	mthd = input("Choose the method you want: ADD | DELETE | SHOWINFO\n").upper()
+	mthd = input("Choose the method you want: ADD | DELETE | SHOW | OUT\n").upper()
 	return mthd
 
 #Ham nhap so dien thoai lien he
@@ -82,7 +82,8 @@ def delete(phonenum):
 	with open("Contact-Email.txt", "w") as e:
 		e.writelines(emails)
 	with open("Contact-Phone_number.txt", "w") as p:
-		p.writelines(str(n.strip())+"\n" for n in numbers)
+		p.write(str(numbers[0].strip()))
+		p.writelines("\n" + str(numbers[n].strip()) for n in range(1,len(numbers)))
 
 #Cac thao tac
 
@@ -112,5 +113,10 @@ if mthd == "ADD":
 	add(phonenum)
 elif mthd == "DELETE":
 	delete(phonenum)
-else:
+elif mthd == "SHOW":
 	cont.show_info()
+elif mthd == "OUT":
+	sys.exit()
+else:
+	print("Please try again!")
+	method()
