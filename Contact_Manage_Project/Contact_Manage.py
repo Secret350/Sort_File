@@ -1,5 +1,5 @@
 import sys
-
+import csv
 #File
 
 RfileP = open("Contact-Phone_number.txt", "r+")
@@ -13,7 +13,7 @@ mailquan = [str(i).strip() for i in RfileE.readlines()]
 phonequan = [ int(i) for i in RfileP.readlines()]
 phonein = [i for i in range (0,len(phonequan))]
 namedic = dict(zip(phonequan,phonein))
-meth = ["ADD", "DELETE", "SHOW", "SHOWALL", "OUT"]
+meth = ["ADD", "DELETE", "SHOW", "SHOWALL","EXPORT", "OUT"]
 
 #Ham refresh data
 
@@ -31,10 +31,10 @@ def refresh_data():
 #Ham chon phuong thuc
 
 def method():
-	mth = input("Choose the method you want: ADD | DELETE | SHOW | SHOWALL | OUT\n").upper()
+	mth = input("Choose the method you want: ADD | DELETE | SHOW | SHOWALL | EXPORT | OUT\n").upper()
 	while mth not in meth:
 		print("Please try again!")
-		mth = input("Choose the method you want: ADD | DELETE | SHOW | SHOWALL | OUT\n").upper()
+		mth = input("Choose the method you want: ADD | DELETE | SHOW | SHOWALL | EXPORT | OUT\n").upper()
 	return mth
 
 #Ham hien thi toan bo so dien thoai lien he
@@ -127,6 +127,15 @@ def addnum():
 		sys.exit()
 	return addnm
 
+#Ham xuat gia tri ra file csv
+
+def exp():
+	with open("contact.csv", "w", newline = "") as csvw:
+		writer = csv.writer(csvw)
+		writer.writerow(["Name","Email","Phone"])
+		for name, email,phone in zip(namequan,mailquan,phonequan):
+			writer.writerow(([name,email,phone]))
+
 #Chon chuc nang
 def main():
 	RfileN.seek(0)
@@ -147,6 +156,9 @@ def main():
 		snm = num()
 		cont = contact(nameread[namedic[int(snm)]].strip(), phoneread[namedic[int(snm)]].strip(), mailread[namedic[int(snm)]].strip())
 		cont.show_info()
+	elif mthd == "EXPORT":
+		refresh_data()
+		exp()
 	elif mthd == "OUT":
 		sys.exit()
 	elif mthd == "SHOWALL":
