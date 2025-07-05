@@ -7,17 +7,22 @@ RfileE = open("Contact-Email.txt", "r+")
 RfileN = open("Contact-Name.txt","r+")
 
 #Luu tru
+
 namequan = [str(i) for i in RfileN.readlines()]
 mailquan = [str(i) for i in RfileE.readlines()]
 phonequan = [ int(i) for i in RfileP.readlines()]
 phonein = [i for i in range (0,len(phonequan))]
 namedic = dict(zip(phonequan,phonein))
+meth = ["ADD", "DELETE", "SHOW", "SHOWALL", "OUT"]
 
 #Ham chon phuong thuc
 
 def method():
-	mthd = input("Choose the method you want: DELETE | SHOW | SHOWALL | OUT\n").upper()
-	return mthd
+	mth = input("Choose the method you want: ADD | DELETE | SHOW | SHOWALL | OUT\n").upper()
+	while mth not in meth:
+		print("Please try again!")
+		mth = input("Choose the method you want: ADD | DELETE | SHOW | SHOWALL | OUT\n").upper()
+	return mth
 
 #Ham hien thi toan bo so dien thoai lien he
 
@@ -28,14 +33,17 @@ def show_all():
 #Ham nhap so dien thoai lien he
 
 def num():
-	key = str(input("Please enter the phone number!\n"))
+	key = int(input("Please enter the phone number!\n"))
+	while key not in phonequan:
+		print("Phone number not found! To add new phone number, choose ADD.")
+		key = int(input("Please enter the phone number!\n"))
 	return key
 
 #Ham them dia chi vao danh ba
 
-def add(phonenum):
+def add(anm):
 	newcontact_name = str(input("Please enter new contact's name: "))
-	newcontact_phone = phonenum
+	newcontact_phone = anm
 	newcontact_email = str(input("Please enter new contact's email: "))
 	if len(namedic) == 0:
 		namedic[int(newcontact_phone)] = 0
@@ -57,10 +65,10 @@ class contact:
 	# Ham hien thi thong tin lien he
 
 	def show_info(self):
-		print(f"The contact's infomation:\nName: {self.name}Phone_Number: {self.phonenumber}\nEmail: {self.email}")
+		print(f"The contact's infomation:\nName: {self.name}\nPhone_Number: {self.phonenumber}\nEmail: {self.email}")
 #Ham xoa dia chi lien he
 
-def delete(phonenum):
+def delete(nm):
 	RfileN.seek(0)
 	names = RfileN.readlines()
 	RfileE.seek(0)
@@ -71,7 +79,7 @@ def delete(phonenum):
 	#strip(): xoa \n
 
 	try:
-		id = [n.strip() for n in numbers].index(phonenum)
+		id = [n.strip() for n in numbers].index(nm)
 	except ValueError:
 		print("Phone number not found!")
 		return
@@ -88,38 +96,32 @@ def delete(phonenum):
 		p.write(str(numbers[0].strip()))
 		p.writelines("\n" + str(numbers[n].strip()) for n in range(1,len(numbers)))
 
-#Cac thao tac
+#Ham nhap so dien thoai them vao
 
-phonenum = num()
-
-if int(phonenum) not in phonequan:
-	print("This is newphone number do you want to add new?\n")
-	ans = input("Yes/EnterAgain/End").upper()
-	if ans == "YES":
-		add(phonenum)
-	elif ans == "ENTERAGAIN":
-		phonenum = num()
-	else:
+def addnum():
+	addnm = str(input("Enter adding number: "))
+	if int(addnm) in phonequan:
+		print("This phone number is already in contact!")
 		sys.exit()
-
+	return addnm
 #Chon chuc nang
 
 RfileN.seek(0)
 nameread = RfileN.readlines()
 RfileE.seek(0)
 mailread = RfileE.readlines()
-cont = contact(nameread[namedic[int(phonenum)]],phonenum,mailread[namedic[int(phonenum)]])
 
 mthd = method()
 
-if mthd == "DELETE":
-	delete(phonenum)
+if mthd == "ADD":
+	add(addnum())
+elif mthd == "DELETE":
+	delete("0"+ str(num()))
 elif mthd == "SHOW":
+	snm = num()
+	cont = contact(nameread[namedic[int(snm)]].strip(), "0" + str(snm), mailread[namedic[int(snm)]].strip())
 	cont.show_info()
 elif mthd == "OUT":
 	sys.exit()
 elif mthd == "SHOWALL":
 	show_all()
-else:
-	print("Please try again!")
-	mthd = method()
