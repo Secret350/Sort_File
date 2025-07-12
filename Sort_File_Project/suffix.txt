@@ -1,0 +1,14 @@
+.rar
+.pdf
+.jfif
+.mp4
+.jpg
+.zip
+.exe
+.docx
+.pptx
+.ini
+.msi
+.png
+.mp3
+.txt
