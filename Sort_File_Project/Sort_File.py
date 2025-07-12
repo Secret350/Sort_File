@@ -6,13 +6,13 @@ from pathlib import Path
 direct = r"E:\Python\Python_Project\Sort_File_Project\Downloads"
 Rfile = open("suffix.txt","r+")
 suffix = [i.strip() for i in Rfile.readlines()]
-lst = os.listdir(r"E:\Python\Python_Project\Sort_File_Project\Downloads")
+lst_name = os.listdir(r"E:\Python\Python_Project\Sort_File_Project\Downloads")
 
 #Ham tim phan mo rong cua file
 
 def findend():
 	store = []
-	for i in lst:
+	for i in lst_name:
 		store.append(Path(i).suffix)
 	return store
 
@@ -50,3 +50,11 @@ create_new()
 #Ham di chuyen file
 
 def movefile():
+	for i in lst_name:
+		if Path(i).suffix != '':
+			path = os.path.join(direct,i)
+			snfx = Path(i).suffix
+			newdirect = os.path.join(direct,snfx,i)
+			shutil.move(path,newdirect)
+movefile()
+
