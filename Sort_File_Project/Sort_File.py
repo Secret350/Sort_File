@@ -5,6 +5,7 @@ import tkinter as tk
 from tkinter import filedialog
 
 #tkinter
+
 root = tk.Tk()
 root.withdraw()
 file_path = filedialog.askdirectory(title="Select a folder!")
@@ -70,4 +71,3 @@ def movefile():
 			newdirect = os.path.join(file_path,snfx,i)
 			shutil.move(path,newdirect)
 movefile()
-
