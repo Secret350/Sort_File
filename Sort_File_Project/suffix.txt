@@ -1,0 +1,9 @@
+.doc
+.docx
+.pdf
+.pptx
+.txt
+.xls
+.xlsx
+.exe
+.txt

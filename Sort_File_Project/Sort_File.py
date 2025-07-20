@@ -43,18 +43,25 @@ def remove_repeat():
 
 def wrt():
 	with open("suffix.txt","w+") as writefile:
-		for i in range (0,len(remove_repeat())):
-			if i<len(remove_repeat())-1:
-				writefile.writelines(str(remove_repeat()[i])+"\n")
-			else:
-				writefile.writelines(str(remove_repeat()[i]))
+		for dir_indx in range(0,len(lst_name)):
+			if (Path(lst_name[dir_indx]).suffix == "") and (lst_name[dir_indx][0]==".") :
+				if dir_indx < len(lst_name) - 1:
+					writefile.writelines(str(lst_name[dir_indx]) + "\n")
+				else:
+					writefile.writelines(str(lst_name[dir_indx]))
+		else:
+			for i in range (0,len(remove_repeat())):
+				if i<len(remove_repeat())-1:
+					writefile.writelines(str(remove_repeat()[i])+"\n")
+				else:
+					writefile.writelines(str(remove_repeat()[i]))
 wrt()
 
 #Ham tao thu muc moi
 
 def create_new():
 	for i in remove_repeat():
-		if (i not in suffix) or (i not in suffix_folder) and (i != ''):
+		if (i not in suffix) or ((i not in suffix_folder) and (i != '')):
 			os.chdir(file_path)
 			os.mkdir(str(i))
 			with open("suffix.txt","w+") as w:
@@ -65,7 +72,7 @@ create_new()
 
 def movefile():
 	for i in lst_name:
-		if Path(i).suffix != '':
+		if (Path(i).suffix != '') and (i != "suffix.txt"):
 			path = os.path.join(file_path,i)
 			snfx = Path(i).suffix
 			newdirect = os.path.join(file_path,snfx,i)
