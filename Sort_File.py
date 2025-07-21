@@ -27,7 +27,7 @@ print(suffix_folder)
 def findend():
 	store = []
 	for i in lst_name:
-		store.append(Path(i).suffix)
+		store.append(Path(i).suffix.lower())
 	return store
 
 #Ham xoa cac phan tu trung lap trong danh sach cac phan mo rong
